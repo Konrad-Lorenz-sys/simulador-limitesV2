@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulador de Límites – Fundación Universitaria Konrad Lorenz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Simulador de Límites Fundación Universitaria Konrad Lorenz</h1>
+      <span class="tag">Calculo 1</span>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="controls-title">
+        <h2 id="controls-title" style="margin:0 0 12px 0;font-size:16px">Entradas</h2>
+
+        <label for="expr">Función f(x) <span class="muted">(usa sin, cos, tan, log, ln, log10, sqrt, abs, exp, pi, e, ^ o pow(x,y); ángulos en radianes)</span></label>
+        <input id="expr" class="mono" placeholder="(x^2-9)/(x-3)" value="(x^2-9)/(x-3)" />
+
+        <div style="margin-top: 8px;">
+            <label for="exampleSelector" style="margin-bottom: 2px;">Cargar Ejemplo Rápido</label>
+            <select id="exampleSelector"></select>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label for="a">Punto a evaluar a (x → a / inf)</label>
+            <input id="a" type="text" value="3" />
+          </div>
+          <div>
+            <label for="range">Ventana de gráfico (R)</label>
+            <input id="range" type="number" step="any" value="5" />
+          </div>
+        </div>
+        <p class="muted" style="margin: 4px 0 0; font-size: 11px;">Ventana: [a−R, a+R]. Para $\infty$ usa un $R$ grande (ej: 100).</p>
+
+
+        <div class="row">
+          <div>
+            <label for="eps">Distancias iniciales (ε)</label>
+            <select id="eps">
+              <option value="0.5">0.5</option>
+              <option value="0.1" selected>0.1</option>
+              <option value="0.01">0.01</option>
+              <option value="0.001">0.001</option>
+            </select>
+          </div>
+          <div>
+            <label for="samples"># muestras por lado</label>
+            <select id="samples">
+              <option>5</option>
+              <option selected>7</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <button type="button" class="primary" id="btnCalc">Calcular límite</button>
+          <button type="button" class="ghost" id="btnPlot">Graficar</button>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+             <button type="button" class="ghost" id="btnFixScale">Fijar Escala</button>
+             <button type="button" class="ghost" id="btnResetView">Restablecer Vista</button>
+        </div>
+        <p class="footer">Tip: <span class="kbd">Enter</span> = Calcular, <span class="kbd">Shift+Enter</span> = Graficar. **Scroll para Zoom**, **Clic y Arrastrar para Desplazar**.</p>
+        <div id="errorBox" role="alert"></div>
+      </section>
+
+      <section class="card" aria-labelledby="results-title">
+        <h2 id="results-title" style="margin:0 0 8px 0;font-size:16px">Resultados</h2>
+        <div id="status" aria-live="polite" style="margin-bottom:10px"></div>
+        <canvas id="plot"></canvas>
+
+        <div style="margin-top:12px">
+          <table id="table"><thead><tr>
+            <th>x (izq)</th><th>f(x)</th><th>x (der)</th><th>f(x)</th>
+          </tr></thead><tbody></tbody></table>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <button type="button" class="ghost" id="btnPNG">Descargar imagen (PNG)</button>
+          <button type="button" class="ghost" id="btnPDF">Descargar PDF</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
